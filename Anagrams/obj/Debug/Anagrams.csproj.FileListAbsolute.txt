@@ -3,3 +3,8 @@ C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams
 C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\Anagrams\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\Anagrams\obj\Debug\Anagrams.dll
 C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\Anagrams\obj\Debug\Anagrams.pdb
+C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\bin\Anagrams.dll
+C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\bin\Anagrams.pdb
+C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\obj\Debug\Anagrams.dll
+C:\Users\Reeithaa\Documents\Visual Studio 2010\Projects\AnagramsProject\Anagrams\obj\Debug\Anagrams.pdb
