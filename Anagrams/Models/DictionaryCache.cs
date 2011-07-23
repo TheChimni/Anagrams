@@ -13,7 +13,7 @@ namespace Anagrams.Models
 	{
 		public static IDictionaryCache GetInstance()
 		{
-			return null;
+			return new DictionaryCache();
 		}
 	}
 }

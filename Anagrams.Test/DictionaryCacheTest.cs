@@ -17,5 +17,13 @@ namespace Anagrams.Test
 			IDictionaryCache cache = DictionaryCache.GetInstance();
 			Assert.IsNotNull(cache);
 		}
+
+		[Test]
+		public void CacheShouldBeSingleton()
+		{
+			IDictionaryCache cache1 = DictionaryCache.GetInstance();
+			IDictionaryCache cache2 = DictionaryCache.GetInstance();
+			Assert.AreSame(cache1, cache2);
+		}
 	}
 }
