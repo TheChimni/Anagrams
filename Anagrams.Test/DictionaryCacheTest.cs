@@ -34,5 +34,12 @@ namespace Anagrams.Test
 			IDictionaryCache cache2 = DictionaryCache.GetInstance();
 			Assert.AreNotSame(cache1, cache2);
 		}
+
+		[Test]
+		public void CacheShouldBeLoaded()
+		{
+			IDictionaryCache cache = DictionaryCache.GetInstance();
+			Assert.IsTrue(cache.IsLoaded);
+		}
 	}
 }

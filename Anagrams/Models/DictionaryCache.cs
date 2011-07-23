@@ -7,6 +7,7 @@ namespace Anagrams.Models
 {
 	public interface IDictionaryCache
 	{
+		bool IsLoaded { get; }
 	}
 
 	public class DictionaryCache : IDictionaryCache
@@ -30,5 +31,7 @@ namespace Anagrams.Models
 		{
 			Instance = new DictionaryCache();
 		}
+
+		public bool IsLoaded { get; private set; }
 	}
 }
