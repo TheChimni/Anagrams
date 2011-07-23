@@ -8,6 +8,7 @@ namespace Anagrams.Models
 	public interface IDictionaryCache
 	{
 		bool IsLoaded { get; }
+		IEnumerable<string> GetAnagrams(string input);
 	}
 
 	public class DictionaryCache : IDictionaryCache
@@ -37,6 +38,11 @@ namespace Anagrams.Models
 				}
 			}
 			return Instance;
+		}
+
+		public IEnumerable<string> GetAnagrams(string input)
+		{
+			return null;
 		}
 
 		public static void Reset()

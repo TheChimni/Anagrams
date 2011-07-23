@@ -56,16 +56,28 @@ namespace Anagrams.Test
 			DictionaryCache.GetInstance();
 			Assert.AreEqual(1, reader.CallCount);
 		}
+
+		[Test]
+		public void SimpleAnagramLookup()
+		{
+			var reader = new MockReader { Strings = new string[] { "silent", "listen" } };
+			DictionaryCache.Reader = reader;
+			IEnumerable<string> anagrams =  DictionaryCache.GetInstance().GetAnagrams("enlist");
+			Assert.AreEqual(anagrams.Count(), 2);
+			Assert.IsTrue(anagrams.Contains("silent"));
+			Assert.IsTrue(anagrams.Contains("listen"));
+		}
 	}
 
 	class MockReader : IDictionaryReader
 	{
-		public int CallCount { get; set; }
+		public int CallCount { get; private set; }
+		public string[] Strings { get; set; }
 
 		public IEnumerable<string> Read()
 		{
 			CallCount++;
-			return new string[0];
+			return Strings ?? new string[0];
 		}
 	}
 }
