@@ -12,7 +12,8 @@ namespace Anagrams.Models
 
 	public class DictionaryCache : IDictionaryCache
 	{
-		private static DictionaryCache	Instance = new DictionaryCache(); 
+		private static DictionaryCache Instance = new DictionaryCache();
+		public static IDictionaryReader Reader { get; set; }
 
 		DictionaryCache()
 		{

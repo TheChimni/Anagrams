@@ -41,5 +41,25 @@ namespace Anagrams.Test
 			IDictionaryCache cache = DictionaryCache.GetInstance();
 			Assert.IsTrue(cache.IsLoaded);
 		}
+
+		[Test]
+		public void ShouldBeAbleToOverrideReader()
+		{
+			var reader = new MockReader();
+			DictionaryCache.Reader = reader;
+			DictionaryCache.GetInstance();
+			Assert.AreEqual(1, reader.CallCount);
+		}
+	}
+
+	class MockReader : IDictionaryReader
+	{
+		public int CallCount { get; set; }
+
+		public IEnumerable<string> Read()
+		{
+			CallCount++;
+			return null;
+		}
 	}
 }
