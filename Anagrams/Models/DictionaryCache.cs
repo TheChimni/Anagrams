@@ -7,19 +7,32 @@ namespace Anagrams.Models
 {
 	public interface IDictionaryCache
 	{
+		// This property could well be removed
 		bool IsLoaded { get; }
+
+		/// <summary>
+		/// Looks up input string into the Anagram Cache to returns all anagrams for the input string
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns>An IEnumerable of strings</returns>
 		IEnumerable<string> GetAnagrams(string input);
 	}
 
 	public class DictionaryCache : IDictionaryCache
 	{
+		// Instance of the singleton class
 		private static DictionaryCache Instance = new DictionaryCache();
-		public static IDictionaryReader Reader { get; set; }
-		public IDictionary<string, IList<string>> AnagramCache { get; private set; }
 
+		// A property that can be set by the test client to enable mocking the dependencies
+		public static IDictionaryReader Reader { get; set; }
+
+		// A data structure to cache strings read from a file
+		private IDictionary<string, IList<string>> anagramCache;
+		
+		// Private constructor
 		DictionaryCache()
 		{
-			AnagramCache = new Dictionary<string, IList<string>>();
+			anagramCache = new Dictionary<string, IList<string>>();
 		}
 
 		static DictionaryCache()
@@ -28,23 +41,26 @@ namespace Anagrams.Models
 		
 		public static IDictionaryCache GetInstance()
 		{
+			// Check to ensure the cache gets loaded only once into the memory
 			if (!Instance.IsLoaded) 
 			{ 
 				Instance.IsLoaded = true;
 				if (Reader != null)
 				{
+					// Iterate through the list of words read from the an external resource. Could be from a file/database
 					foreach (var word in Reader.Read())
 					{
+						// Sort the word in ascending order
 						string sortedWord = new string(word.OrderBy(ch => ch).ToArray());
-						if (!Instance.AnagramCache.ContainsKey(sortedWord))
+						if (!Instance.anagramCache.ContainsKey(sortedWord))
 						{
 							IList<string> anagrams = new List<string>();
 							anagrams.Add(word);
-							Instance.AnagramCache.Add(sortedWord, anagrams);
+							Instance.anagramCache.Add(sortedWord, anagrams);
 						}
 						else
 						{
-							Instance.AnagramCache[sortedWord].Add(word);
+							Instance.anagramCache[sortedWord].Add(word);
 						}
 					}
 				}
@@ -55,15 +71,19 @@ namespace Anagrams.Models
 		public IEnumerable<string> GetAnagrams(string input)
 		{
 			var sortedInput = new string(input.OrderBy(ch => ch).ToArray());
-			return AnagramCache.ContainsKey(sortedInput) ? AnagramCache[sortedInput].AsEnumerable() :
+			return anagramCache.ContainsKey(sortedInput) ? anagramCache[sortedInput].AsEnumerable() :
 				new List<string>();
 		}
 
+		/// <summary>
+		/// Allows the client to refresh the cache
+		/// </summary>
 		public static void Reset()
 		{
 			Instance = new DictionaryCache();
 		}
 
+		// To ensure the cache gets loaded only the first time an instance is created
 		public bool IsLoaded { get; private set; }
 	}
 }
