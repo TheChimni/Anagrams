@@ -11,7 +11,7 @@ namespace Anagrams.Models
 
 	public class DictionaryCache : IDictionaryCache
 	{
-		private static readonly DictionaryCache	Instance = new DictionaryCache(); 
+		private static DictionaryCache	Instance = new DictionaryCache(); 
 
 		DictionaryCache()
 		{
@@ -28,6 +28,7 @@ namespace Anagrams.Models
 
 		public static void Reset()
 		{
+			Instance = new DictionaryCache();
 		}
 	}
 }
