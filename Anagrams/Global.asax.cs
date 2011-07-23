@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Anagrams.Models;
 
 namespace Anagrams
 {
@@ -32,7 +33,7 @@ namespace Anagrams
 		protected void Application_Start()
 		{
 			AreaRegistration.RegisterAllAreas();
-
+			DictionaryCache.Reader = new DictionaryReader();
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
 		}

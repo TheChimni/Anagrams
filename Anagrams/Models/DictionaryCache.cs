@@ -15,9 +15,11 @@ namespace Anagrams.Models
 	{
 		private static DictionaryCache Instance = new DictionaryCache();
 		public static IDictionaryReader Reader { get; set; }
+		public IDictionary<string, IList<string>> AnagramCache { get; private set; }
 
 		DictionaryCache()
 		{
+			AnagramCache = new Dictionary<string, IList<string>>();
 		}
 
 		static DictionaryCache()
@@ -33,7 +35,17 @@ namespace Anagrams.Models
 				{
 					foreach (var word in Reader.Read())
 					{
-						// TODO: 
+						string sortedWord = new string(word.OrderBy(ch => ch).ToArray());
+						if (!Instance.AnagramCache.ContainsKey(sortedWord))
+						{
+							IList<string> anagrams = new List<string>();
+							anagrams.Add(word);
+							Instance.AnagramCache.Add(sortedWord, anagrams);
+						}
+						else
+						{
+							Instance.AnagramCache[sortedWord].Add(word);
+						}
 					}
 				}
 			}
@@ -42,7 +54,9 @@ namespace Anagrams.Models
 
 		public IEnumerable<string> GetAnagrams(string input)
 		{
-			return null;
+			var sortedInput = new string(input.OrderBy(ch => ch).ToArray());
+			return AnagramCache.ContainsKey(sortedInput) ? AnagramCache[sortedInput].AsEnumerable() :
+				new List<string>();
 		}
 
 		public static void Reset()
