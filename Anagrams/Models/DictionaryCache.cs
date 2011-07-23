@@ -25,5 +25,9 @@ namespace Anagrams.Models
 		{
 			return Instance;
 		}
+
+		public static void Reset()
+		{
+		}
 	}
 }
