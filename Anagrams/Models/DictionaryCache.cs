@@ -24,6 +24,7 @@ namespace Anagrams.Models
 		
 		public static IDictionaryCache GetInstance()
 		{
+			if (!Instance.IsLoaded) { Instance.IsLoaded = true; }
 			return Instance;
 		}
 
