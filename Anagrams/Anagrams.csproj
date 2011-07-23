@@ -65,7 +65,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Anagram.cs" />
-    <Compile Include="Models\ReadTextFromFile.cs" />
+    <Compile Include="Models\DictionaryCache.cs" />
+    <Compile Include="Models\DictionaryReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

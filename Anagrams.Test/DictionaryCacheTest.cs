@@ -14,7 +14,8 @@ namespace Anagrams.Test
 		[Test]
 		public void GetCache()
 		{
-			//ILexicon cache
+			IDictionaryCache cache = DictionaryCache.GetInstance();
+			Assert.IsNotNull(cache);
 		}
 	}
 }
