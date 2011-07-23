@@ -25,7 +25,17 @@ namespace Anagrams.Models
 		
 		public static IDictionaryCache GetInstance()
 		{
-			if (!Instance.IsLoaded) { Instance.IsLoaded = true; }
+			if (!Instance.IsLoaded) 
+			{ 
+				Instance.IsLoaded = true;
+				if (Reader != null)
+				{
+					foreach (var word in Reader.Read())
+					{
+						// TODO: 
+					}
+				}
+			}
 			return Instance;
 		}
 

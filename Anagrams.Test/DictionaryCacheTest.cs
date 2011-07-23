@@ -11,6 +11,12 @@ namespace Anagrams.Test
 	[TestFixture]
 	public class DictionaryCacheTest
 	{
+		[SetUp]
+		public void Setup()
+		{
+			DictionaryCache.Reset();
+		}
+
 		[Test]
 		public void GetCache()
 		{
@@ -59,7 +65,7 @@ namespace Anagrams.Test
 		public IEnumerable<string> Read()
 		{
 			CallCount++;
-			return null;
+			return new string[0];
 		}
 	}
 }
