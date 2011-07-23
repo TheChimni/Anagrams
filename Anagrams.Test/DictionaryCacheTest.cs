@@ -9,7 +9,7 @@ using Anagrams.Models;
 namespace Anagrams.Test
 {
 	[TestFixture]
-	public class LexiconCacheTest
+	public class DictionaryCacheTest
 	{
 		[Test]
 		public void GetCache()
