@@ -67,6 +67,26 @@ namespace Anagrams.Test
 			Assert.IsTrue(anagrams.Contains("silent"));
 			Assert.IsTrue(anagrams.Contains("listen"));
 		}
+
+		[Test]
+		public void ReturnEmptyListForGibberishWord()
+		{
+			var reader = new MockReader { Strings = new string[] { } };
+			DictionaryCache.Reader = reader;
+			IEnumerable<string> anagrams = DictionaryCache.GetInstance().GetAnagrams("matiz");
+			Assert.IsEmpty(anagrams.ToList<string>());
+		}
+
+		[Test]
+		public void AnagramSearchTestWithMoreWordsInDictionary()
+		{
+			var reader = new MockReader { Strings = new string[] {"silent", "listen", "boaster", "reason", "kinship" } };
+			DictionaryCache.Reader = reader;
+			IEnumerable<string> anagrams = DictionaryCache.GetInstance().GetAnagrams("enlist");
+			Assert.AreEqual(anagrams.Count(), 2);
+			Assert.IsTrue(anagrams.Contains("silent"));
+			Assert.IsTrue(anagrams.Contains("listen"));
+		}
 	}
 
 	class MockReader : IDictionaryReader
