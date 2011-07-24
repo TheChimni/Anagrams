@@ -87,6 +87,17 @@ namespace Anagrams.Test
 			Assert.IsTrue(anagrams.Contains("silent"));
 			Assert.IsTrue(anagrams.Contains("listen"));
 		}
+
+		[Test]
+		public void AnagramSearchTest1()
+		{
+			var reader = new MockReader { Strings = new string[] 
+			{ "silent", "listen", "boaster", "reason", "kinship", "fresher" } };
+			DictionaryCache.Reader = reader;
+			IEnumerable<string> anagrams = DictionaryCache.GetInstance().GetAnagrams("refresh");
+			Assert.AreEqual(anagrams.Count(), 1);
+			Assert.IsTrue(anagrams.Contains("fresher"));
+		}
 	}
 
 	class MockReader : IDictionaryReader
