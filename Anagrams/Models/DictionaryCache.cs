@@ -23,6 +23,8 @@ namespace Anagrams.Models
 		// Instance of the singleton class
 		private static DictionaryCache Instance = new DictionaryCache();
 
+		static readonly object lockObject = new object();
+
 		// A property that can be set by the test client to enable mocking the dependencies
 		public static IDictionaryReader Reader { get; set; }
 
@@ -41,26 +43,29 @@ namespace Anagrams.Models
 		
 		public static IDictionaryCache GetInstance()
 		{
-			// Check to ensure the cache gets loaded only once into the memory
-			if (!Instance.IsLoaded) 
-			{ 
-				Instance.IsLoaded = true;
-				if (Reader != null)
+			lock (lockObject)
+			{
+				// Check to ensure the cache gets loaded only once into the memory
+				if (!Instance.IsLoaded)
 				{
-					// Iterate through the list of words read from the an external resource. Could be from a file/database
-					foreach (var word in Reader.Read())
+					Instance.IsLoaded = true;
+					if (Reader != null)
 					{
-						// Sort the word in ascending order
-						string sortedWord = new string(word.OrderBy(ch => ch).ToArray());
-						if (!Instance.anagramCache.ContainsKey(sortedWord))
+						// Iterate through the list of words read from the an external resource. Could be from a file/database
+						foreach (var word in Reader.Read())
 						{
-							IList<string> anagrams = new List<string>();
-							anagrams.Add(word);
-							Instance.anagramCache.Add(sortedWord, anagrams);
-						}
-						else
-						{
-							Instance.anagramCache[sortedWord].Add(word);
+							// Sort the word in ascending order
+							string sortedWord = new string(word.OrderBy(ch => ch).ToArray());
+							if (!Instance.anagramCache.ContainsKey(sortedWord))
+							{
+								IList<string> anagrams = new List<string>();
+								anagrams.Add(word);
+								Instance.anagramCache.Add(sortedWord, anagrams);
+							}
+							else
+							{
+								Instance.anagramCache[sortedWord].Add(word);
+							}
 						}
 					}
 				}
