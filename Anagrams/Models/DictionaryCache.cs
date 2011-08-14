@@ -23,10 +23,11 @@ namespace Anagrams.Models
 		// Instance of the singleton class
 		private static DictionaryCache Instance = new DictionaryCache();
 
-		static readonly object lockObject = new object();
+		static readonly object LockObject = new object();
 
 		// A property that can be set by the test client to enable mocking of dependencies
 		public static IDictionaryReader Reader { get; set; }
+		private static string Path;
 
 		// A data structure to cache strings read from a file
 		private IDictionary<string, IList<string>> anagramCache;
@@ -43,7 +44,7 @@ namespace Anagrams.Models
 		
 		public static IDictionaryCache GetInstance()
 		{
-			lock (lockObject)
+			lock (LockObject)
 			{
 				// Check to ensure the cache gets loaded only once into the memory
 				if (!Instance.IsLoaded)
@@ -52,7 +53,7 @@ namespace Anagrams.Models
 					if (Reader != null)
 					{
 						// Iterate through the list of words read from the an external resource. Could be from a file/database
-						foreach (var word in Reader.Read())
+						foreach (var word in Reader.Read(Path))
 						{
 							// Sort the word in ascending order
 							string sortedWord = new string(word.OrderBy(ch => ch).ToArray());
@@ -71,6 +72,11 @@ namespace Anagrams.Models
 				}
 			}
 			return Instance;
+		}
+
+		public static void SetPath(string path)
+		{
+			Path = path;
 		}
 
 		public IEnumerable<string> GetAnagrams(string input)

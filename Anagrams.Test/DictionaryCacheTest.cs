@@ -119,7 +119,7 @@ namespace Anagrams.Test
 		public int CallCount { get; private set; }
 		public string[] Strings { get; set; }
 
-		public IEnumerable<string> Read()
+		public IEnumerable<string> Read(string path = null)
 		{
 			CallCount++;
 			return Strings ?? new string[0];

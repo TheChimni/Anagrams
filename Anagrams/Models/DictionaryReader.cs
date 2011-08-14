@@ -8,7 +8,7 @@ namespace Anagrams.Models
 {
 	public interface IDictionaryReader
 	{
-		IEnumerable<string> Read();
+		IEnumerable<string> Read(string path = null);
 	}
 
 	public class DictionaryReader : IDictionaryReader
@@ -19,15 +19,16 @@ namespace Anagrams.Models
 		{
 		}
 
-		public IEnumerable<string> Read()
+		public IEnumerable<string> Read(string path)
 		{
-			if (!File.Exists(FILE_NAME))
+			var filePath = path ?? FILE_NAME;
+			if (!File.Exists(filePath))
 			{
-				throw new Exception(string.Format("{0} does not exist!", FILE_NAME));
+				throw new Exception(string.Format("{0} does not exist!", filePath));
 			}
 
 			// Read words from the file
-			using (StreamReader reader = File.OpenText(FILE_NAME))
+			using (StreamReader reader = File.OpenText(filePath))
 			{
 				string readString = null;
 				while ((readString = reader.ReadLine()) != null)
