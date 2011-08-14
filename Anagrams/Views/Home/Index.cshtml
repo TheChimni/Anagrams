@@ -1,8 +1,13 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model string
+<h2>Index</h2>
+@{
+    ViewBag.Title = "Index";
+}
+@using (var form = Html.BeginForm())
+{
+   <div>@Html.TextBox("word")</div>
+    <div><input type = "submit" value = "Lookup Anagrams" /></div>
 }
 
-<h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+
+

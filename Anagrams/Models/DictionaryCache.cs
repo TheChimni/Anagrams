@@ -25,7 +25,7 @@ namespace Anagrams.Models
 
 		static readonly object lockObject = new object();
 
-		// A property that can be set by the test client to enable mocking the dependencies
+		// A property that can be set by the test client to enable mocking of dependencies
 		public static IDictionaryReader Reader { get; set; }
 
 		// A data structure to cache strings read from a file
