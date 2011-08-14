@@ -16,12 +16,12 @@ namespace Anagrams.Controllers
 			return View("");
 		}
 
-		//[HttpPost]
-		//public ActionResult Index(string word)
-		//{
-		//    IDictionaryCache cache = DictionaryCache.GetInstance().GetAnagrams(word);
-		//    return View();
-		//}
+		[HttpPost]
+		public ActionResult Index(string word)
+		{
+			IEnumerable<string> anagrams = DictionaryCache.GetInstance().GetAnagrams(word);
+			return View(anagrams);
+		}
 
 		public ActionResult About()
 		{
