@@ -36,6 +36,7 @@ namespace Anagrams
 			DictionaryCache.Reader = new DictionaryReader();
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
+			DictionaryCache.SetPath(HttpContext.Current.Server.MapPath(@"Content/wordlist.txt"));
 		}
 	}
 }
