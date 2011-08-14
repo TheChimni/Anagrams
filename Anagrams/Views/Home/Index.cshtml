@@ -1,13 +1,18 @@
 ﻿@model Anagrams.Models.ViewModels.IndexViewModel
 <h2>Index</h2>
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 @using (Html.BeginForm())
 {
-   <div>@Html.TextBoxFor(t => t.Word)</div>
-    <div><input type = "submit" value = "Lookup Anagrams" /></div>
+	 <div>@Html.TextBoxFor(t => t.Word)</div>
+	 <div><input type="submit" value="Lookup Anagrams" /></div>
+	 <div>
+		  <ul>
+				@foreach (var item in Model.Anagrams)
+				{
+	 				<li>@item</li>
+				}
+		  </ul>
+	 </div>
 }
-
-
-

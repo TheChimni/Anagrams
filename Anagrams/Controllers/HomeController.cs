@@ -13,8 +13,7 @@ namespace Anagrams.Controllers
 		public ActionResult Index()
 		{
 			ViewBag.Message = "Welcome to ASP.NET MVC!";
-			var model = new IndexViewModel();
-			return View(model);
+			return View(new IndexViewModel());
 		}
 
 		[HttpPost]
