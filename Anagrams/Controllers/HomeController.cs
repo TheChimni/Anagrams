@@ -18,10 +18,10 @@ namespace Anagrams.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Index(string word)
+		public ActionResult Index(IndexViewModel model)
 		{
-			IEnumerable<string> anagrams = DictionaryCache.GetInstance().GetAnagrams(word);
-			return View(anagrams);
+			model.Anagrams = DictionaryCache.GetInstance().GetAnagrams(model.Word);
+			return View(model);
 		}
 
 		public ActionResult About()
