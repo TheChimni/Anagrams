@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Anagrams.Models;
+using Anagrams.Models.ViewModels;
 
 namespace Anagrams.Controllers
 {
@@ -12,8 +13,8 @@ namespace Anagrams.Controllers
 		public ActionResult Index()
 		{
 			ViewBag.Message = "Welcome to ASP.NET MVC!";
-			//IDictionaryCache cache = DictionaryCache.GetInstance().GetAnagrams();
-			return View("");
+			var model = new IndexViewModel();
+			return View(model);
 		}
 
 		[HttpPost]

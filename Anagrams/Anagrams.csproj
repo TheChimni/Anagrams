@@ -67,6 +67,7 @@
     <Compile Include="Models\Anagram.cs" />
     <Compile Include="Models\DictionaryCache.cs" />
     <Compile Include="Models\DictionaryReader.cs" />
+    <Compile Include="Models\ViewModels\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
