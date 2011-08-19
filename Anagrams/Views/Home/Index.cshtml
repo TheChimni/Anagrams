@@ -3,6 +3,7 @@
 @{
 	ViewBag.Title = "Index";
 }
+<div id = "anagramlookup">
 @using (Html.BeginForm())
 {
 	 <div>@Html.TextBoxFor(t => t.Word)</div>
@@ -11,8 +12,9 @@
 		  <ul>
 				@foreach (var item in Model.Anagrams)
 				{
-	 				<li>@item</li>
-				}
+	 				<li>@item</li>                    
+			    }
 		  </ul>
 	 </div>
 }
+</div>
