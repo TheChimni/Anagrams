@@ -17,9 +17,14 @@ namespace Anagrams.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Index(IndexViewModel model)
+		public ActionResult Index(IndexViewModel model, string format)
 		{
 			model.Anagrams = DictionaryCache.GetInstance().GetAnagrams(model.Word);
+
+			if (format == "json")
+			{
+				return Json(model.Anagrams);
+			}
 			return View(model);
 		}
 
