@@ -27,10 +27,10 @@ namespace Anagrams
 				"{controller}/{action}/{id}", // URL with parameters
 				new { controller = "Home", action = "Index", id = UrlParameter.Optional }); // Parameter defaults
 
-			routes.MapRoute(
-				"InJSONFormat", // Route name
-				"home/index.{format}", // URL with parameters
-				new { controller = "Home", action = "Index", format = "json" }); // Parameter defaults
+			//routes.MapRoute(
+			//    "InJSONFormat", // Route name
+			//    "home/index.{format}", // URL with parameters
+			//    new { controller = "Home", action = "Index", format = "html" }); // Parameter defaults
 		}
 
 		protected void Application_Start()
@@ -39,7 +39,7 @@ namespace Anagrams
 			DictionaryCache.Reader = new DictionaryReader();
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
-			DictionaryCache.SetPath(HttpContext.Current.Server.MapPath(@"Content/wordlist.txt"));
+			DictionaryCache.SetPath(HttpContext.Current.Server.MapPath(@"~/Content/wordlist.txt"));
 		}
 	}
 }
