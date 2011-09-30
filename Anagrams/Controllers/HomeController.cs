@@ -19,7 +19,14 @@ namespace Anagrams.Controllers
 		[HttpPost]
 		public ActionResult Index(IndexViewModel model)
 		{
-			model.Anagrams = DictionaryCache.GetInstance().GetAnagrams(model.Word);
+			try
+			{
+				model.Anagrams = DictionaryCache.GetInstance().GetAnagrams(model.Word);
+			}
+			catch(Exception ex)
+			{
+				model.Exception = new ExceptionViewModel { Message = ex.Message, CallStack = string.Empty};
+			}
 
 			//if (Request.Headers["accept"] == "application/json")
 			if (Request.IsAjaxRequest())
