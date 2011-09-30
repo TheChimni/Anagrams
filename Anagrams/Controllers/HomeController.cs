@@ -24,7 +24,7 @@ namespace Anagrams.Controllers
 			//if (Request.Headers["accept"] == "application/json")
 			if (Request.IsAjaxRequest())
 			{
-				return Json(model.Anagrams);
+				return Json(model);
 			}
 			return View(model);
 		}
