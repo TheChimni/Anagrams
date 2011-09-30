@@ -29,11 +29,12 @@ namespace Anagrams.Controllers
 			return View(model);
 		}
 
-		public ActionResult Json(IndexViewModel model)
-		{
-			model.Anagrams = DictionaryCache.GetInstance().GetAnagrams(model.Word);
-			return Json(model.Anagrams, JsonRequestBehavior.AllowGet);
-		}
+		// For experiment purpose only
+		//public ActionResult Json(IndexViewModel model)
+		//{
+		//    model.Anagrams = DictionaryCache.GetInstance().GetAnagrams(model.Word);
+		//    return Json(model.Anagrams, JsonRequestBehavior.AllowGet);
+		//}
 
 		public ActionResult About()
 		{

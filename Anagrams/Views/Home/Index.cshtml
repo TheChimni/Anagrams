@@ -8,12 +8,12 @@
 {
 	 <div>@Html.TextBoxFor(t => t.Word)</div>
 	 <div><input type="submit" value="Lookup Anagrams" /></div>
-	 <div>
+	 <div id = 'result'>
 		  <ul>
 				@foreach (var item in Model.Anagrams)
 				{
-	 				<li>@item</li>                    
-			    }
+	 				<li>@item</li>
+				}
 		  </ul>
 	 </div>
 }
