@@ -3,9 +3,22 @@
 	font-family: Segoe UI, Arial, Verdana;
 }
 
-h2 {
+h1 {
 	margin: 0 auto 15px;
 	text-align: center;
+}
+
+input {
+	margin: 0 auto;
+	display: block;
+}
+
+input#Word {
+	width: 400px;
+}
+
+input[type='submit'] {
+	width: 200px;
 }
 
 body {
