@@ -37,6 +37,19 @@ input#Word {
 	margin-bottom: 10px;
 }
 
-div#main ul{
+div#message {
+	width: 400px;
+	font-size: 120%;
+	color: #800;
+	margin: 0 auto;
+}
+div#main ul {
 	list-style: none;
+	padding: 0 50px;
+	font-size: 150%;
+}
+
+div#main ul li {
+	text-align: left;
+	border-bottom: 1px solid #ddd;
 }
