@@ -1,4 +1,5 @@
 ﻿$(function () {
+	$('input#Word').focus();
 	$('#anagramlookup form').submit(function (event) {
 		event.preventDefault();
 		$('#message').html('');
