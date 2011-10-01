@@ -1,4 +1,8 @@
-﻿div#main {
+﻿body {
+	margin: 0;
+}
+
+div#main {
 	width: 500px;
 	border: 1px solid #000;
 	margin: 0 auto;
