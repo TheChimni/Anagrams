@@ -1,6 +1,11 @@
 ﻿html {
 	background-color: #444;
+	font-family: Segoe UI, Arial, Verdana;
+}
 
+h2 {
+	margin: 0 auto 15px;
+	text-align: center;
 }
 
 body {
