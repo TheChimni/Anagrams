@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace Anagrams.Models
 {
@@ -82,7 +83,8 @@ namespace Anagrams.Models
 		  public IEnumerable<string> GetAnagrams(string input)
 		  {
 				var sortedInput = new string(input.OrderBy(ch => ch).ToArray());
-				return anagramCache.ContainsKey(sortedInput) ? anagramCache[sortedInput].AsEnumerable() : new List<string>();
+				return anagramCache.ContainsKey(sortedInput) ?
+					anagramCache[sortedInput].Except(new List<string>() { input }) : new List<string>();
 		  }
 
 		  /// <summary>

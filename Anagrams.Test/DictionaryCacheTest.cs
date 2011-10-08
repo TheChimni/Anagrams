@@ -108,9 +108,9 @@ namespace Anagrams.Test
 			};
 			DictionaryCache.Reader = reader;
 			IEnumerable<string> anagrams = DictionaryCache.GetInstance().GetAnagrams("shipink");
-			Assert.AreEqual(anagrams.Count(), 2);
+			Assert.AreEqual(anagrams.Count(), 1);
 			Assert.IsTrue(anagrams.Contains("kinship"));
-			Assert.IsTrue(anagrams.Contains("shipink"));
+			Assert.IsFalse(anagrams.Contains("shipink"));
 		}
 	}
 
